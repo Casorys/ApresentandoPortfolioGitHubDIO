@@ -1,5 +1,6 @@
 package com.br.freitastiago.showcaseportfoliodio.data.services
 
+import com.br.freitastiago.showcaseportfoliodio.data.model.Repo
 import retrofit2.http.GET
 import retrofit2.http.Path
 

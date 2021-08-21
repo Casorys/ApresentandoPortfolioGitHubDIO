@@ -1,6 +1,8 @@
 package com.br.freitastiago.showcaseportfoliodio.data.di
 
 import android.util.Log
+import com.br.freitastiago.showcaseportfoliodio.data.repositories.RepoRepository
+import com.br.freitastiago.showcaseportfoliodio.data.repositories.RepoRepositoryImpl
 import com.br.freitastiago.showcaseportfoliodio.data.services.GitHubService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -15,7 +17,7 @@ object DataModule {
     private const val OK_HTTP = "OkHttp"
 
     fun load() {
-        loadKoinModules(networkModules())
+        loadKoinModules(networkModules() + repositoriesModule())
     }
 
     private fun networkModules(): Module {
@@ -38,6 +40,12 @@ object DataModule {
                 createService<GitHubService>(get(), get())
             }
 
+        }
+    }
+
+    private fun repositoriesModule(): Module {
+        return module {
+            single <RepoRepository> { RepoRepositoryImpl(get()) }
         }
     }
 
